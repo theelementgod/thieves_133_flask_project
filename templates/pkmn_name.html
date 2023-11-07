@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/styles/pkmn_name.css">
+{% endblock %}
+
+{% block content %}
+    <form method='POST'>
+        <div class="mb-3">
+          <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
+          <input type="text" class="form-control" id="pkmnLabel" name="pkmn_name">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Ability</th>
+            <th scope="col">HP</th>
+            <th scope="col">Attack</th>
+            <th scope="col">Defense</th>
+            <th scope="col">Front Shiny Sprite</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for pkmn in pkmn_data %}
+          <tr>
+            <th scope="row">{{ pkmn_data['pkmn_name'] }}</th> 
+            <td>{{ pkmn['ability'] }}</td>
+            <td>{{ pkmn['hp'] }}</td>
+            <td>{{ pkmn['attack'] }}</td>
+            <td>{{ pkmn['defense'] }}</td>
+            <td>{{ pkmn['shiny_sprite_url'] }}</td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+{% endblock %}
