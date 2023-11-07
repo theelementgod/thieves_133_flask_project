@@ -12,15 +12,20 @@ def hello_trainer():
 def get_pkmn_data_name():
     if request.method == 'POST':
         pkmn_name = request.form.get('pkmn_name')
+        print(pkmn_name)
         pkmn_url = f'https://pokeapi.co/api/v2/pokemon/{pkmn_name}'
         pkmn_response = requests.get(pkmn_url)
         pkmn_data = pkmn_response.json()
+        print(pkmn_data['forms'][0]['name'])
+        
         all_pkmn = get_pkmn_data(pkmn_data)
+        print(all_pkmn)
         return render_template('pkmn_name.html', all_pkmn=all_pkmn)
     else:
         return render_template('pkmn_name.html')
 
 def get_pkmn_data(pkmn_data):
+    print(pkmn_data)
     new_pkmn_data =[]
     pkmn_dict = {
         'pkmn_name': pkmn_data['forms'][0]['name'],

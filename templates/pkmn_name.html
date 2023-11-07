@@ -16,6 +16,9 @@ Pokemon Team Builder
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
+    {% if all_pkmn %}
+        <p>{{ all_pkmn }}</p>
+    {% endif %}
     <table class="table">
         <thead>
           <tr>
@@ -31,7 +34,7 @@ Pokemon Team Builder
           </tr>
         </thead>
         <tbody>
-            {% for pkmn in pkmn_data %}
+            {% for pkmn in all_pkmn %}
           <tr>
             <td>{{ pkmn['pkmn_name'] }}</td> 
             <td>{{ pkmn['ability'] }}</td>
@@ -42,8 +45,7 @@ Pokemon Team Builder
             <td>{{ pkmn['sp_def'] }}</td>
             <td>{{ pkmn['speed'] }}</td>
             <td><img src="{{ pkmn['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
-          </tr>
-          
+          </tr>         
             {% endfor %}
         </tbody>
       </table>
