@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="../static/styles/pkmn_name.css">
 {% endblock %}
 
+{% block title %}
+Pokemon Team Builder
+{% endblock %}
+
 {% block content %}
     <form method='POST'>
         <div class="mb-3">
@@ -20,19 +24,26 @@
             <th scope="col">HP</th>
             <th scope="col">Attack</th>
             <th scope="col">Defense</th>
+            <th scope="col">Special Attack</th>
+            <th scope="col">Special Defense</th>
+            <th scope="col">Speed</th>
             <th scope="col">Front Shiny Sprite</th>
           </tr>
         </thead>
         <tbody>
             {% for pkmn in pkmn_data %}
           <tr>
-            <th scope="row">{{ pkmn_data['pkmn_name'] }}</th> 
+            <td>{{ pkmn['pkmn_name'] }}</td> 
             <td>{{ pkmn['ability'] }}</td>
             <td>{{ pkmn['hp'] }}</td>
             <td>{{ pkmn['attack'] }}</td>
             <td>{{ pkmn['defense'] }}</td>
-            <td>{{ pkmn['shiny_sprite_url'] }}</td>
+            <td>{{ pkmn['sp_attk'] }}</td>
+            <td>{{ pkmn['sp_def'] }}</td>
+            <td>{{ pkmn['speed'] }}</td>
+            <td><img src="{{ pkmn['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
           </tr>
+          
             {% endfor %}
         </tbody>
       </table>
