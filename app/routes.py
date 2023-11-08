@@ -8,11 +8,24 @@ from app.forms import LoginForm
 def hello_trainer():
     return render_template('home.html')
 
+REGISTERED_USER = {
+    'joke@email.com': {
+        'name': 'Jesse De La Rosa',
+        'password': 'ilovegaming'
+    }
+}
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        return 'Successfully Logged In'
+        email = form.email.data
+        password = form.password.data
+
+        if email in REGISTERED_USER and REGISTERED_USER[email]['password'] == password:
+            return f'Hello, {REGISTERED_USER[email]["name"]}'
+        else:
+            return 'Invalid email or password'
     else:
         return render_template('login.html' , form=form)
 
