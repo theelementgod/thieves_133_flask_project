@@ -9,6 +9,7 @@ Pokemon Team Builder
 {% endblock %}
 
 {% block content %}
+    {% include './includes/nav.html' %}
     <form method='POST'>
         <div class="mb-3">
           <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
@@ -16,7 +17,6 @@ Pokemon Team Builder
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
-    
     <table class="table">
         <thead>
           <tr>
