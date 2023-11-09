@@ -55,11 +55,10 @@ def get_pkmn_data_name():
     if request.method == 'POST':
         pkmn_name = form.pokemon.data
         try:
-            pkmn_name = request.form.get('pkmn_name'.lower)
             pokemon_url=f"https://pokeapi.co/api/v2/pokemon/{pkmn_name}"
             pkmn_response = requests.get(pokemon_url)
             pkmn_data = pkmn_response.json()
-            new_pkmn_data =[]
+            
             pkmn_dict = {
                     'pkmn_name': pkmn_data['forms'][0]['name'],
                     'ability': pkmn_data['abilities'][0]['ability']['name'],
@@ -71,9 +70,9 @@ def get_pkmn_data_name():
                     'speed': pkmn_data['stats'][5]['base_stat'],
                     'shiny_sprite_url': pkmn_data['sprites']['front_shiny']
                 }
-            new_pkmn_data.append(pkmn_dict)
+           
 
-            return render_template('pkmn_name.html', new_pkmn_data=new_pkmn_data)
+            return render_template('pkmn_name.html', pkmntest=pkmn_dict, form=form)
         except:
             return render_template('pkmn_name.html', form=form)
     else:
