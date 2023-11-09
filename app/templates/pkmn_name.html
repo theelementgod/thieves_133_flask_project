@@ -16,11 +16,11 @@ Pokemon Team Builder
         <div class="mb-3">
           <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
           {{ form.pokemon(class='form-control', id='pkmnLabel') }}
-          {{ form.submit_pkmn_btn(class='btn btn-primary') }}
+          {{ form.submit_pkmn }}
         </div>
-    </form>
+</form>
 
-    {% if pkmntest %}
+    {% if pkmn_name %}
     <table class="table">
         <thead>
           <tr>
@@ -37,14 +37,14 @@ Pokemon Team Builder
         </thead>
         <tbody>         
           <tr>
-            <td>{{ pkmntest['pkmn_name'].title() }}</td> 
-            <td>{{ pkmntest['ability'].title() }}</td>
-            <td>{{ pkmntest['hp'] }}</td>
-            <td>{{ pkmntest['attack'] }}</td>
-            <td>{{ pkmntest['defense'] }}</td>
-            <td>{{ pkmntest['sp_attk'] }}</td>
-            <td>{{ pkmntest['sp_def'] }}</td>
-            <td>{{ pkmntest['speed'] }}</td>
+            <td>{{ pkmn_name['pkmn_name'].title() }}</td> 
+            <td>{{ pkmn_name['ability'].title() }}</td>
+            <td>{{ pkmn_name['hp'] }}</td>
+            <td>{{ pkmn_name['attack'] }}</td>
+            <td>{{ pkmn_name['defense'] }}</td>
+            <td>{{ pkmn_name['sp_attk'] }}</td>
+            <td>{{ pkmn_name['sp_def'] }}</td>
+            <td>{{ pkmn_name['speed'] }}</td>
             <td><img src="{{ pkmn['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
           </tr>           
         </tbody>

@@ -34,6 +34,7 @@ def login():
 def signup():
     form = Signupform()
     if request.method == 'POST' and form.validate_on_submit():
+        print('post')
         full_name = f'{form.first_name.data} {form.last_name.data}'
         email = form.email.data
         password = form.password.data
@@ -49,16 +50,17 @@ def signup():
     
 
 @app.route('/pkmn_name', methods=['GET', 'POST'])
-
 def get_pkmn_data_name():
     form = PkmnForm()
-    if request.method == 'POST':
+    print('inroute')
+    if request.method == 'POST' and form.validate_on_submit():
+        print('post')
         pkmn_name = form.pokemon.data
+        print(pkmn_name)
         try:
             pokemon_url=f"https://pokeapi.co/api/v2/pokemon/{pkmn_name}"
             pkmn_response = requests.get(pokemon_url)
             pkmn_data = pkmn_response.json()
-            
             pkmn_dict = {
                     'pkmn_name': pkmn_data['forms'][0]['name'],
                     'ability': pkmn_data['abilities'][0]['ability']['name'],
@@ -70,13 +72,8 @@ def get_pkmn_data_name():
                     'speed': pkmn_data['stats'][5]['base_stat'],
                     'shiny_sprite_url': pkmn_data['sprites']['front_shiny']
                 }
-           
-
-            return render_template('pkmn_name.html', pkmntest=pkmn_dict, form=form)
+            return render_template('pkmn_name.html', pkmn_name=pkmn_dict, form=form)
         except:
             return render_template('pkmn_name.html', form=form)
     else:
         return render_template('pkmn_name.html', form=form)
-
-
-
