@@ -2,6 +2,7 @@ from flask import request, render_template
 import requests
 from app import app
 from app.forms import LoginForm
+from app.forms import PkmnForm
 
 @app.route('/')
 @app.route('/home')
@@ -31,21 +32,25 @@ def login():
 
 @app.route('/pkmn_name', methods=['GET', 'POST'])
 def get_pkmn_data_name():
+    form = PkmnForm()
     if request.method == 'POST':
-        pkmn_name = request.form.get('pkmn_name'.lower())
-        pkmn_url = f'https://pokeapi.co/api/v2/pokemon/{pkmn_name}'
-        pkmn_response = requests.get(pkmn_url)
-        pkmn_data = pkmn_response.json()
-        
-        all_pkmn = get_pkmn_data(pkmn_data)
-        return render_template('pkmn_name.html', all_pkmn=all_pkmn)
+        try:
+            pkmn_name = request.form.get('pkmn_name'.lower())
+            pkmn_url = f'https://pokeapi.co/api/v2/pokemon/{pkmn_name}'
+            pkmn_response = requests.get(pkmn_url)
+            pkmn_data = pkmn_response.json()
+            
+            all_pkmn = get_pkmn_data(pkmn_data)
+            return render_template('pkmn_name.html', all_pkmn=all_pkmn)
+        except:
+            return render_template('pkmn_name.html', form=form)
     else:
-        return render_template('pkmn_name.html')
+        return render_template('pkmn_name.html', form=form)
 
 def get_pkmn_data(pkmn_data):
     new_pkmn_data =[]
     pkmn_dict = {
-        'pkmn_name': (pkmn_data['forms'][0]['name']),
+        'pkmn_name': pkmn_data['forms'][0]['name'],
         'ability': pkmn_data['abilities'][0]['ability']['name'],
         'hp': pkmn_data['stats'][0]['base_stat'],
         'attack': pkmn_data['stats'][1]['base_stat'],

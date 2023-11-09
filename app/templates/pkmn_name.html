@@ -13,7 +13,7 @@ Pokemon Team Builder
     <form method='POST'>
         <div class="mb-3">
           <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
-          <input type="text" class="form-control" id="pkmnLabel" name="pkmn_name">
+          {{ form.pokemon(class='form-control', id='pkmnLabel') }}
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
@@ -34,8 +34,8 @@ Pokemon Team Builder
         <tbody>
             {% for pkmn in all_pkmn %}
           <tr>
-            <td>{{ pkmn['pkmn_name'] }}</td> 
-            <td>{{ pkmn['ability'] }}</td>
+            <td>{{ pkmn['pkmn_name'].title() }}</td> 
+            <td>{{ pkmn['ability'].title() }}</td>
             <td>{{ pkmn['hp'] }}</td>
             <td>{{ pkmn['attack'] }}</td>
             <td>{{ pkmn['defense'] }}</td>
