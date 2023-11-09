@@ -45,7 +45,7 @@ def get_pkmn_data_name():
         except:
             return render_template('pkmn_name.html', form=form)
     else:
-        return render_template('pkmn_name.html', form=form)
+        return render_template('pkmn_name.html', all_pkmn=all_pkmn)
 
 def get_pkmn_data(pkmn_data):
     new_pkmn_data =[]
