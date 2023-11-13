@@ -1,12 +1,13 @@
 * {
     font-family: 'Arimo', sans-serif;
+    font-weight: 700;
 }
 
 body{
     height: 100vh;
-    background: #EF3B36;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #FFFFFF, #EF3B36);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #FFFFFF, #EF3B36); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #EF3B36;
+    background: -webkit-linear-gradient(to top, #FFFFFF, #EF3B36);
+    background: linear-gradient(to top, #FFFFFF, #EF3B36);
 }
 
 img {
@@ -18,7 +19,8 @@ img {
 
 .cus-input:focus {
     border: 1px white;
-    box-shadow: rgb(245, 51, 51) 0px 3px 8px;}
+    box-shadow: rgb(245, 51, 51) 0px 3px 8px;
+}
 
 .login-btn {
     display: block;

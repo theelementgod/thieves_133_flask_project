@@ -1,0 +1,13 @@
+*{
+    font-weight: 700;
+}
+
+body{
+    height: 100vh;
+    color: red;
+    background: url("https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-scarlet-violet/e/ef/Pokemon_Paldea_Map.jpg?width=1600");
+    background-repeat: no-repeat;
+    background-size: length contain;
+ }
+
+ 

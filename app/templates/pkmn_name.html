@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-    
+<link rel="stylesheet" href="../static/styles/pkmn_name.css">
 {% endblock %}
 
 {% block title %}
@@ -11,12 +11,12 @@ Pokemon Team Builder
 {% block content %}
 {% include './includes/nav.html' %}
 
-<form method="POST" class="w-25 mx-auto shadow-lg p3 mt5 mb5 bg-body-tertiary rounded "></form>
+<form method="POST" class="w-25 mx-auto shadow-lg p3 mt5 mb5 bg-body-tertiary rounded ">
   {{ form.hidden_tag() }}
         <div class="mb-3">
           <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
-          {{ form.pokemon(class='form-control', id='pkmnLabel') }}
-          {{ form.submit_pkmn }}
+          {{ form.pokemon(class='form-control cus-input', id='pkmnLabel') }}
+          {{ form.submit_pkmn(class='btn btn-primary login-btn')}}
         </div>
 </form>
 
@@ -24,19 +24,20 @@ Pokemon Team Builder
     <table class="table">
         <thead>
           <tr>
+            <th scope="col"></th>
             <th scope="col">Name</th>
             <th scope="col">Ability</th>
-            <th scope="col">HP</th>
+            <th scope="col">Base HP</th>
             <th scope="col">Attack</th>
             <th scope="col">Defense</th>
             <th scope="col">Special Attack</th>
             <th scope="col">Special Defense</th>
             <th scope="col">Speed</th>
-            <th scope="col">Front Shiny Sprite</th>
           </tr>
         </thead>
         <tbody>         
           <tr>
+            <td><img src="{{ pkmn_name['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
             <td>{{ pkmn_name['pkmn_name'].title() }}</td> 
             <td>{{ pkmn_name['ability'].title() }}</td>
             <td>{{ pkmn_name['hp'] }}</td>
@@ -45,9 +46,8 @@ Pokemon Team Builder
             <td>{{ pkmn_name['sp_attk'] }}</td>
             <td>{{ pkmn_name['sp_def'] }}</td>
             <td>{{ pkmn_name['speed'] }}</td>
-            <td><img src="{{ pkmn['shiny_sprite_url'] }}" alt="shiny_sprite"></td>
           </tr>           
         </tbody>
-      </table>
+    </table>
 {% endif %}
 {% endblock %}

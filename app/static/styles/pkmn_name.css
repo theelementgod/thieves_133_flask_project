@@ -1,0 +1,32 @@
+* {
+    font-family: 'Arimo', sans-serif;
+    font-weight: 700;
+}
+
+body{
+    background: #EF3B36;
+    background: -webkit-linear-gradient(to top, #FFFFFF, #EF3B36);
+    background: linear-gradient(to top, #FFFFFF, #EF3B36);
+    background-size: contain;
+}
+.login-btn {
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(245, 51, 51);
+    color: white;
+    border: 1px solid white;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.login-btn:hover {
+    background-color: white;
+    color: rgb(245, 51, 51);
+    border: 1px solid rgb(245, 51, 51);
+    transform: scale(1.2);
+}
+
+.cus-input:focus {
+    border: 1px white;
+    box-shadow: rgb(245, 51, 51) 0px 3px 8px;
+}

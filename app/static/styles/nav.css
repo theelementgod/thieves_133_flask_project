@@ -1,0 +1,9 @@
+logout_btn {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid white;
+    font-weight: 700;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}

@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+    <link rel="stylesheet" href="../static/styles/home.css">
+{% endblock %}
+
 {% block title %}
     Pokemon Team Builder
 {% endblock %}
 
 {% block content %}
 {% include './includes/nav.html' %}
-    <h1>Are you ready to build your team, Trainer?</h1>
 {% endblock %}
