@@ -4,10 +4,10 @@
 }
 
 body{
+    height: 100vh;
     background: #EF3B36;
     background: -webkit-linear-gradient(to top, #FFFFFF, #EF3B36);
     background: linear-gradient(to top, #FFFFFF, #EF3B36);
-    background-size: contain;
 }
 .login-btn {
     display: block;
