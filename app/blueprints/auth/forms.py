@@ -7,10 +7,6 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password: ', validators=[DataRequired()])
     submit_btn = SubmitField('Login')
 
-class PkmnForm(FlaskForm):
-    pokemon = StringField('Pokemon: ', validators=[DataRequired()])
-    submit_pkmn = SubmitField('Submit')
-
 class SignupForm(FlaskForm):
     first_name = StringField('First Name: ', validators=[DataRequired()])
     last_name = StringField('Last Name ', validators=[DataRequired()])

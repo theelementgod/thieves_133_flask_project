@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/styles/login.css">
+{% endblock %}
+
+{% block content %}
+<img class="mx-auto d-block" src="https://www.prosportstickers.com/wp-content/uploads/nc/q/pokemon_go_logo_2__41251.jpg" alt="Pokemon Logo with Ball">
+<h1 class="text-center">Create Your Team!</h1>
+    <form method="POST" class="w-25 mx-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="pokemon1" class="form-label">Pokemon 1:</label>
+            {{ form.pokemon1(class='form-control cus-input', id='pokemon1') }}
+        </div>
+        <div class="mb-3">
+            <label for="pokemon2" class="form-label">Pokemon 2:</label>
+            {{ form.pokemon2(class='form-control cus-input', id='pokemon2') }}
+        </div>
+        <div class="mb-3">
+            <label for="pokemon3" class="form-label">Pokemon 3:</label>
+            {{ form.pokemon3(class='form-control cus-input', id='pokemon3') }}
+        </div>
+        <div class="mb-3">
+            <label for="pokemon4" class="form-label">Pokemon 4:</label>
+            {{ form.pokemon4(class='form-control cus-input', id='pokemon4') }}
+        </div>
+        <div class="mb-3">
+            <label for="pokemon5" class="form-label">Pokemon 5:</label>
+            {{ form.pokemon5(class='form-control cus-input', id='pokemon5') }}
+        </div>
+        <div class="mb-3">
+            <label for="pokemon6" class="form-label">Pokemon 6:</label>
+            {{ form.pokemon6(class='form-control cus-input', id='pokemon6') }}
+        </div>
+        {{ form.submit_btn(class='btn btn-primary login-btn') }}
+    </form>
+{% endblock %}

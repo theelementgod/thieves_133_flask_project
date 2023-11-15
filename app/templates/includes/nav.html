@@ -11,22 +11,26 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
 
-          <a class="nav-link" aria-current="page" href="{{ url_for('home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          <a class="nav-link" aria-current="page" href="{{ url_for('main.home') }}" alt="home_btn"><img src="https://i.pinimg.com/736x/6d/b5/37/6db5375049badafb8f88e36570dc74f6.jpg">Home</a>
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('get_pkmn_data_name') }}">Team Builder</a>
+          <a class="nav-link" href="{{ url_for('team.create_team') }}" alt="search_btn"><img src="https://www.shareicon.net/data/512x512/2016/12/13/863557_timer_512x512.png">Team Builder</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}" alt="logout_button"><img src="https://i.pinimg.com/474x/b8/4a/f3/b84af360376913cda85fa9b8b214f9f1.jpg">Logout</a>
+          <a class="nav-link" href="{{ url_for('main.get_pkmn_data_name') }}" alt="team_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Pokemon Search</a>
         </li>
-        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.logout') }}" alt="logout_btn"><img src="https://i.pinimg.com/474x/b8/4a/f3/b84af360376913cda85fa9b8b214f9f1.jpg">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.signup') }}" alt="signup_btn"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/10324630-3bf7-4d5b-831a-c931da9b6de5/d68qj45-a689ae7a-ed22-4751-beea-9a5d9db0244f.png/v1/fill/w_894,h_894/quickball_by_vongolaleader_d68qj45-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTAwIiwicGF0aCI6IlwvZlwvMTAzMjQ2MzAtM2JmNy00ZDViLTgzMWEtYzkzMWRhOWI2ZGU1XC9kNjhxajQ1LWE2ODlhZTdhLWVkMjItNDc1MS1iZWVhLTlhNWQ5ZGIwMjQ0Zi5wbmciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.WRA3a5SjREsLEEC_CbicaV1ZAR0mhPFr7xdxrc2mh_E">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.login') }}" alt="login_btn"><img src="https://www.shareicon.net/data/512x512/2016/12/13/863564_ball_512x512.png">Login</a>
+        </li>
+        {% endif%}
       </ul>
     </div>
   </div>
