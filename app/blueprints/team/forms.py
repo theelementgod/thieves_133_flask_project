@@ -8,3 +8,4 @@ class TeamForm(FlaskForm):
     pokemon4 = StringField('Pokemon #4: ')
     pokemon5 = StringField('Pokemon #5: ')
     pokemon6 = StringField('Pokemon #6: ')
+    submit_btn = SubmitField('Register')
