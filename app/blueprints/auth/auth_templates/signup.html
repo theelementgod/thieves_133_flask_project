@@ -30,5 +30,8 @@
             {{ form.confirm_password(class='form-control cus-input', id='cpassword') }}
         </div>
         {{ form.submit_btn(class='btn btn-primary login-btn') }}
+        <div>
+            <a href="{{ url_for('auth.login') }}">Already a Registered Trainer?  Click on this link to Log In!</a>
+        </div>
     </form>
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask
 from config import Config
 from flask_login import LoginManager
 from app.models import db, User
@@ -19,11 +19,9 @@ login_manager.login_message_category = 'warning'
 
 from app.blueprints.auth import auth
 from app.blueprints.main import main
-from app.blueprints.team import team
 
 app.register_blueprint(auth)
 app.register_blueprint(main)
-app.register_blueprint(team)
 
 @login_manager.user_loader
 def load_user(user_id):

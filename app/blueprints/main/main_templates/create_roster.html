@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/styles/login.css">
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<img class="mx-auto d-block" src="https://www.prosportstickers.com/wp-content/uploads/nc/q/pokemon_go_logo_2__41251.jpg" alt="Pokemon Logo with Ball">
+<h1 class="text-center">Build Your Team!</h1>
+    <form method="POST" class="w-25 mx-auto shadow p-3 mb-5 mt-5 bg-body-tertiary rounded">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="pkmn_name" class="form-label">Pokemon:</label>
+            {{ form.pkmn_name(class='form-control cus-input', id='pkmn_name') }}
+        </div>
+        {{ form.submit_btn(class='btn btn-primary login-btn') }}
+        <div class="mb-3">
+            <label for="shiny_sprite_url" class="form-label">Shiny Sprite URL:</label>
+            {{ form.pkmn_name(class='form-control cus-input', id='shiny_sprite_url') }}
+        </div>
+        <div class="mb-3">
+            <label for="ability_name" class="form-label">Ability:</label>
+            {{ form.ability_name(class='form-control cus-input', id='ability_name') }}
+        </div>
+        <div class="mb-3">
+            <label for="base_hp" class="form-label">Base HP:</label>
+            {{ form.base_hp(class='form-control cus-input', id='base_hp') }}
+        </div>
+        <div class="mb-3">
+            <label for="attack_stat" class="form-label">ATK:</label>
+            {{ form.attack_stat(class='form-control cus-input', id='attack_stat') }}
+        </div>
+        <div class="mb-3">
+            <label for="defense_stat" class="form-label">DEF:</label>
+            {{ form.defense_stat(class='form-control cus-input', id='defense_stat') }}
+        </div>
+        <div class="mb-3">
+            <label for="spatk_stat" class="form-label">SP.ATK:</label>
+            {{ form.spatk_stat(class='form-control cus-input', id='spatk_stat') }}
+        </div>
+        <div class="mb-3">
+            <label for="spdef_stat" class="form-label">SP.DEF:</label>
+            {{ form.spdef_stat(class='form-control cus-input', id='spdef_stat') }}
+        </div>
+        <div class="mb-3">
+            <label for="speed_stat" class="form-label">SPD:</label>
+            {{ form.speed_stat(class='form-control cus-input', id='speed_stat') }}
+        </div>
+        
+    </form>
+{% endblock %}

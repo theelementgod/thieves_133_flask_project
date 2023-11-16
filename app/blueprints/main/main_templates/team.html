@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block title %}
+Pokemon Team
+{% endblock %}
+
+{% block content %}
+{% include'./includes/nav.html' %}
+    {% if all_pkmn %}
+        {% for pkmn in all_pkmn %}
+        <div class="card mx-auto mb-3" style="width: 18rem;">
+            <img src="{{ pokemon.shiny_sprite_url }}" class="card-img-top" alt="{{ pokemon.pokemon_name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ pokemon.pokemon_name }}</h5>
+              <p class="card-text">{{ pokemon.ablility_name }}</p>
+              <p class="card-text">'BASE_HP: {{pokemon.base_hp}} ATK: {{pokemon.attack_stat}} DEF: {{pokemon.defense_stat}} SP.ATK: {{pokemon.spattk_stat}} SP.DEF: {{pokemon.spdef_stat}} SPD: {{pokemon.speed_stat}}</p>
+                {% if current_user.id == pokemon.user.id %}
+              <a href="#" class="btn btn-primary"><img src="https://static.wikia.nocookie.net/pokemon-fano/images/6/6f/Poke_Ball.png/revision/latest?cb=20140520015336" alt="catch_pokeball">Catch!</a>
+              <a href="#" class="btn btn-primary"><img src="https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fbiwi6jwyue481.png%3Fwidth%3D640%26crop%3Dsmart%26auto%3Dwebp%26s%3Db2872428b66d1ce23ec2d7718143d3364dff5e6d" alt"release_pokeball">Release!</a>
+              {% endif %}
+            </div>
+          </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock%}

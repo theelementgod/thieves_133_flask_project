@@ -5,6 +5,10 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
+user_pokemon = db.Table('user_pokemon',
+                    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+                    db.Column('pokemon_name', db.String, db.ForeignKey('pokemon.pkmn_name'))
+)
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String, nullable=False)
@@ -12,6 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
+    catching = db.relationship('Pokemon', secondary=user_pokemon, backref='caught')
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
@@ -20,8 +25,8 @@ class User(db.Model, UserMixin):
         self.password = generate_password_hash(password)
 
 class Pokemon(db.Model):
-    shiny_url = db.Column(db.String, nullable=False)
     pkmn_name = db.Column(db.String, primary_key=True)
+    shiny_url = db.Column(db.String, nullable=False)
     base_hp = db.Column(db.Integer, nullable=False)
     attack = db.Column(db.Integer, nullable=False)
     defense = db.Column(db.Integer, nullable=False)
@@ -29,9 +34,9 @@ class Pokemon(db.Model):
     sp_def = db.Column(db.Integer, nullable=False)
     speed = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, shiny_url, pkmn_name, base_hp, attack, defense, sp_atk, sp_def, speed):
-        self.shiny_url = shiny_url
+    def __init__(self, pkmn_name, shiny_url, base_hp, attack, defense, sp_atk, sp_def, speed):
         self.pkmn_name = pkmn_name
+        self.shiny_url = shiny_url
         self.base_hp = base_hp
         self.attack = attack
         self.defense = defense
@@ -39,19 +44,3 @@ class Pokemon(db.Model):
         self.sp_def = sp_def
         self.speed = speed
 
-class Team(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    pokemon1 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-    pokemon2 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-    pokemon3 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-    pokemon4 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-    pokemon5 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-    pokemon6 = db.Column(db.String, db.ForeignKey('pokemon.pkmn_name'), nullable=False)
-
-    def __init__(self, pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6):
-        self.pokemon1 = pokemon1
-        self.pokemon2 = pokemon2
-        self.pokemon3 = pokemon3
-        self.pokemon4 = pokemon4
-        self.pokemon5 = pokemon5
-        self.pokemon6 = pokemon6
