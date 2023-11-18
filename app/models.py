@@ -27,6 +27,7 @@ class User(db.Model, UserMixin):
 class Pokemon(db.Model):
     pkmn_name = db.Column(db.String, primary_key=True)
     shiny_url = db.Column(db.String, nullable=False)
+    ability = db.Column(db.String, nullable=False)
     base_hp = db.Column(db.Integer, nullable=False)
     attack = db.Column(db.Integer, nullable=False)
     defense = db.Column(db.Integer, nullable=False)
@@ -34,13 +35,13 @@ class Pokemon(db.Model):
     sp_def = db.Column(db.Integer, nullable=False)
     speed = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, pkmn_name, shiny_url, base_hp, attack, defense, sp_atk, sp_def, speed):
+    def __init__(self, pkmn_name, shiny_url, ability, base_hp, attack, defense, sp_atk, sp_def, speed):
         self.pkmn_name = pkmn_name
         self.shiny_url = shiny_url
+        self.ability = ability
         self.base_hp = base_hp
         self.attack = attack
         self.defense = defense
         self.sp_atk = sp_atk
         self.sp_def = sp_def
         self.speed = speed
-

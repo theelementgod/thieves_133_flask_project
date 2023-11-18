@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/pkmn_name.css">
+{% endblock %}
+
+{% block title %}
+Pokemon Team Builder
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+
+<form method="POST" class="w-25 m-3 mx-auto shadow-lg p3 mt5 mb5 bg-body-tertiary rounded ">
+  {{ form.hidden_tag() }}
+        <div class="mb-3">
+          <label for="pkmnLabel" class="form-label">Enter Pokemon name or National Pokedex number: </label>
+          {{ form.pkmn_name(class='form-control cus-input', id='pkmnLabel') }}
+          {{ form.submit_btn(class='btn btn-primary login-btn')}}
+        </div>
+</form>
+
+    {% if pkmn_name %}
+
+
+    <div class="w3-card-4 m-3 w3-dark-grey">
+
+      <div class="w3-container w3-center">
+        <h3>{{ pkmn_name['pkmn_name'].title() }}</h3>
+        <img class= mx-auto src="{{ pkmn_name['shiny_sprite_url'] }}" alt="shiny_sprite"">
+        <h5>{{ pkmn_name['ability'].title() }}</h5>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Base HP</th>
+              <th scope="col">Attack</th>
+              <th scope="col">Defense</th>
+              <th scope="col">Special Attack</th>
+              <th scope="col">Special Defense</th>
+              <th scope="col">Speed</th>
+            </tr>
+          </thead>
+          <tbody>         
+            <tr>
+              <td>{{ pkmn_name['base_hp'] }}</td>
+              <td>{{ pkmn_name['attack'] }}</td>
+              <td>{{ pkmn_name['defense'] }}</td>
+              <td>{{ pkmn_name['sp_attk'] }}</td>
+              <td>{{ pkmn_name['sp_def'] }}</td>
+              <td>{{ pkmn_name['speed'] }}</td>
+            </tr>           
+          </tbody>
+      </table>
+      
+        <button class="w3-button login-btn w3-green">Catch!</button>
+        <button class="w3-button login-btn w3-red">Release!</button>
+      </div>
+      
+      </div>
+      {% endif %}
+{% endblock %}
