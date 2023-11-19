@@ -18,6 +18,9 @@
           <a class="nav-link" href="{{ url_for('pokemon.get_pkmn_data_name') }}" alt="search_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team Builder</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main.catch') }}" alt="search_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ url_for('auth.logout') }}" alt="logout_btn"><img src="https://i.pinimg.com/474x/b8/4a/f3/b84af360376913cda85fa9b8b214f9f1.jpg">Logout</a>
         </li>
         {% else %}
