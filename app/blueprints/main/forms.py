@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 class CatchForm(FlaskForm):
     pkmn_name = StringField('', validators=[DataRequired()])
-    shiny_url = StringField('', validators=[DataRequired()])
+    shiny_sprite_url = StringField('', validators=[DataRequired()])
     ability = StringField('', validators=[DataRequired()])
     base_hp = IntegerField('HP:', validators=[DataRequired()])
     attack = IntegerField('ATK:', validators=[DataRequired()])
@@ -13,4 +13,5 @@ class CatchForm(FlaskForm):
     sp_def = IntegerField('SP.DEF:', validators=[DataRequired()])
     speed = IntegerField('SPD:', validators=[DataRequired()])
     trainer_id = IntegerField('Trainer ID:', validators=[DataRequired()])
-    submit_btn = SubmitField('Search')
+    catch_btn = SubmitField('Catch!')
+    release_btn = SubmitField('Release!')

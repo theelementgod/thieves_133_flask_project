@@ -15,7 +15,7 @@ def team():
     form = CatchForm()
     if request.method == 'POST' and form.validate_on_submit():
         pkmn_name = form.pkmn_name.data.title()
-        shiny_url = form.shiny_url.data
+        shiny_sprite_url = form.shiny_url.data
         ability = form.ability.data.title()
         base_hp = form.base_hp.data
         attack = form.attack.data
@@ -25,10 +25,9 @@ def team():
         speed = form.speed.data
         trainer_id = current_user.id
 
-        pokemon = Pokemon(pkmn_name, shiny_url, ability, base_hp,
+        pokemon = Pokemon(pkmn_name, shiny_sprite_url, ability, base_hp,
                         attack, defense, sp_atk, sp_def, speed, trainer_id)
 
-        team_size += 1
         db.session.add(pokemon)
         db.session.commit()
 
