@@ -2,8 +2,8 @@ from app.blueprints.pokemon import pokemon
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 import requests
-from .forms import PkmnForm, CatchForm
-from app.models import Pokemon, db
+from .forms import PkmnForm
+from app.models import Pokemon, db, User
 
 @pokemon.route('/pkmn_name', methods=['GET', 'POST'])
 @login_required
@@ -13,7 +13,7 @@ def get_pkmn_data_name():
         pkmn_name = form.pkmn_name.data.lower()
         poke = Pokemon.query.get(pkmn_name)
         if poke:
-            return render_template('pkmn_html', poke=poke)
+            return render_template('pkmn_name.html', poke=poke, form=form)
         else:
             pkmn_name = form.pkmn_name.data.lower()
             try:
@@ -35,46 +35,24 @@ def get_pkmn_data_name():
                                attack=pkmn_dict['attack'], defense=pkmn_dict['defense'], sp_atk=pkmn_dict['sp_attk'], sp_def=pkmn_dict['sp_def'], speed=pkmn_dict['speed'])
                 db.session.add(poke)
                 db.session.commit()
-                return render_template('pkmn_name.html', poke=poke)
+                return render_template('pkmn_name.html', poke=poke, form=form)
             except:
                 return render_template('pkmn_name.html', form=form)
     else:
         return render_template('pkmn_name.html', form=form)
     
-@pokemon.route('/catch/<int:pkmn_name>',methods=['GET'])
+@pokemon.route('/catch/<string:pkmn_name>',methods=['GET'])
 @login_required
 def catch(pkmn_name):
-    form = CatchForm()
-    if request.method == 'GET':
-        pokemon = Pokemon.query.get(pkmn_name)
-        if pokemon:
-            current_user.team.append(pokemon)
-        else:
-
-            pkmn_name = form.pkmn_name.data.lower()
-            shiny_sprite_url = form.shiny_sprite_url.data
-            ability = form.ability.data
-            base_hp = form.base_hp.data
-            attack = form.attack.data
-            defense = form.defense.data
-            sp_atk = form.sp_atk.data
-            sp_def = form.sp_def.data
-            speed = form.speed.data
-            trainer_id = current_user.id
-
-            pokemon = Pokemon(pkmn_name, shiny_sprite_url, ability, base_hp, attack, defense, sp_atk, sp_def, speed, trainer_id)
-
-            db.session.add(pokemon)
-            db.session.commit()
-            current_user.team.append(pokemon)
-
-            flash(f'You have added { pkmn_name } to your team!', 'success')
-            return redirect(url_for('pokemon.pkmn_name'))
-    else:
-        return render_template('pkmn_name.html', form=form)
+    print(pkmn_name)
+    pokemon = Pokemon.query.get(pkmn_name)
+    current_user.catch.append(pokemon)
+    db.session.commit()
+    flash(f'You have added { pkmn_name } to your team!', 'success')
+    return redirect(url_for('pokemon.get_pkmn_data_name'))
     
 @pokemon.route('/team')
 def team():
-    all_pkmn = Pokemon.query.all()
+    all_pkmn = Pokemon.query.filter(User.id == current_user.id).all()
     print(all_pkmn)
     return render_template('team.html', all_pkmn=all_pkmn)

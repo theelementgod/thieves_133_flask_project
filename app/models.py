@@ -5,9 +5,10 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-user_pokemon = db.Table('user_pokemon',
-                    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-                    db.Column('pokemon_name', db.String, db.ForeignKey('pokemon.pkmn_name'))
+trainer_catch = db.Table(
+    'trainer_catch',
+    db.Column('trainer_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('catch', db.String, db.ForeignKey('pokemon.pkmn_name'))
 )
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +17,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
-    catching = db.relationship('Pokemon', secondary=user_pokemon, backref='caught')
+    catch = db.relationship('Pokemon', secondary=trainer_catch, backref='catch')
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
@@ -34,9 +35,8 @@ class Pokemon(db.Model):
     sp_atk = db.Column(db.Integer, nullable=False)
     sp_def = db.Column(db.Integer, nullable=False)
     speed = db.Column(db.Integer, nullable=False)
-    trainer_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self, pkmn_name, shiny_sprite_url, ability, base_hp, attack, defense, sp_atk, sp_def, speed, trainer_id):
+    def __init__(self, pkmn_name, shiny_sprite_url, ability, base_hp, attack, defense, sp_atk, sp_def, speed):
         self.pkmn_name = pkmn_name
         self.shiny_sprite_url = shiny_sprite_url
         self.ability = ability
@@ -46,4 +46,3 @@ class Pokemon(db.Model):
         self.sp_atk = sp_atk
         self.sp_def = sp_def
         self.speed = speed
-        self.trainer_id = trainer_id

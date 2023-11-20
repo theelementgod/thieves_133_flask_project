@@ -14,9 +14,8 @@ Team Manager
 <form method="POST" class="w-25 m-3 mx-auto shadow-lg p3 mt5 mb5 bg-body-tertiary rounded ">
   {{ form.hidden_tag() }}
 </form>
-
-    {% if pkmn_name %}
-      {% for pkmn in pkmn_name %}
+  <h1>My Team</h1>
+    {% for pkmn in all_pkmn %}
 
       <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -24,12 +23,15 @@ Team Manager
         <img src="{{ pokemon.shiny_sprite_url }}" class="card-img-top" alt="shiny_sprite_url">
         <div class="card-body">
           <h5 class="card-title">{{ pokemon.ability }}</h5>
-          <p class="card-text">HP: {{ pokemon.base_hp }}  ATK: {{ pokemon.attack }} DEF: {{ pokemon.defense }}  SP.ATK: {{ pokemon.sp_atk }}  SP.DEF: {{ pokemon.sp_def }}  SPD: {{ pokemon.speed }}</p>
-          <a href="#" class="btn btn-primary">Release!</a>
+          <p class="card-text">HP: {{ pokemon.base_hp }}  ATK: {{ pokemon.attack }} DEF: {{ pokemon.defense }}<br>SP.ATK: {{ pokemon.sp_atk }}  SP.DEF: {{ pokemon.sp_def }}  SPD: {{ pokemon.speed }}</p>
+          {% if pkmn in current_user.catching %}
+          <a href="{{ url_for(pokemon.release)}}" class="btn btn-primary">Release!</a>
+          {% else %}
+          <a href="{{ url_for('pokemon.catch', trainer_id=user.id) }}" class="'btn btn-success">Catch!</a>
+          {% endif %}
         </div>
       </div>
 
-      {% endfor %}
-      {% endif %}
+    {% endfor %}
 {% endblock %}
 
