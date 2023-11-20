@@ -49,6 +49,7 @@ Pokemon Team Builder
               <td>{{ poke.sp_atk }}</td>
               <td>{{ poke.sp_def }}</td>
               <td>{{ poke.speed }}</td>
+              <td><a href="{{ url_for('pokemon.release', pkmn_name=poke.pkmn_name) }}" class="w3-button login-btn w3-red">Release!</a></td>
               <td><a href="{{ url_for('pokemon.catch', pkmn_name=poke.pkmn_name) }}" class="w3-button login-btn w3-green">Catch!</a></td>
             </tr>           
           </tbody>

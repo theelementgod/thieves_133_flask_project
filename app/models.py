@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
-    catch = db.relationship('Pokemon', secondary=trainer_catch, backref='catch')
+    catch = db.relationship('Pokemon', secondary=trainer_catch, backref='catch', lazy='dynamic')
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name

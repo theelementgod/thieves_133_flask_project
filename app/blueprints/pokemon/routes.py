@@ -44,15 +44,34 @@ def get_pkmn_data_name():
 @pokemon.route('/catch/<string:pkmn_name>',methods=['GET'])
 @login_required
 def catch(pkmn_name):
-    print(pkmn_name)
-    pokemon = Pokemon.query.get(pkmn_name)
-    current_user.catch.append(pokemon)
-    db.session.commit()
-    flash(f'You have added { pkmn_name } to your team!', 'success')
-    return redirect(url_for('pokemon.get_pkmn_data_name'))
+        poke = Pokemon.query.get(pkmn_name)
+
+        if not poke:
+            return f'{pkmn_name} is invalid.'
+        
+        trainer_team = current_user.catch.all()
+
+        if len(trainer_team) >= 5:
+            flash(f'You can have a max of 6 Pokemon on your Team.', 'danger')
+            return redirect(url_for('pokemon.get_pkmn_data_name'))
+        
+        if poke in trainer_team:
+            flash(f'{pkmn_name} is already on your Team.', 'warning')
+
+        current_user.catch.append(poke)
+        db.session.commit()
+        flash(f'You have added { pkmn_name } to your team!', 'success')
+        return redirect(url_for('pokemon.get_pkmn_data_name'))
     
 @pokemon.route('/team')
 def team():
     all_pkmn = Pokemon.query.filter(User.id == current_user.id).all()
-    print(all_pkmn)
     return render_template('team.html', all_pkmn=all_pkmn)
+
+@pokemon.route('/release/<string:pkmn_name>')
+@login_required
+def release(pkmn_name):
+    pkmn = Pokemon.query.get(pkmn_name)
+    db.session.delete(pkmn)
+    db.session.commit()
+    return redirect(url_for('pokemon.get_pkmn_data_name'))
