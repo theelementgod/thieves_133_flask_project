@@ -41,9 +41,9 @@ def get_pkmn_data_name():
     else:
         return render_template('pkmn_name.html', form=form)
     
-@pokemon.route('/catch',methods=['GET'])
+@pokemon.route('/catch/<int:pkmn_name>',methods=['GET'])
 @login_required
-def catch():
+def catch(pkmn_name):
     form = CatchForm()
     if request.method == 'GET':
         pokemon = Pokemon.query.get(pkmn_name)
@@ -72,3 +72,9 @@ def catch():
             return redirect(url_for('pokemon.pkmn_name'))
     else:
         return render_template('pkmn_name.html', form=form)
+    
+@pokemon.route('/team')
+def team():
+    all_pkmn = Pokemon.query.all()
+    print(all_pkmn)
+    return render_template('team.html', all_pkmn=all_pkmn)

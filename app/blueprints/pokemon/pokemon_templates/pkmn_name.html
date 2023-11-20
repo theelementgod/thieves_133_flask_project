@@ -20,15 +20,15 @@ Pokemon Team Builder
         </div>
 </form>
 
-    {% if pkmn_name %}
+    {% for pkmn in all_pkmn %}
 
 
     <div class="w3-card-4 m-3 w3-dark-grey">
 
       <div class="w3-container w3-center">
-        <h3>{{ pkmn_name['pkmn_name'].title() }}</h3>
-        <img class= mx-auto src="{{ pkmn_name['shiny_sprite_url'] }}" alt="shiny_sprite"">
-        <h5>{{ pkmn_name['ability'].title() }}</h5>
+        <h3>{{ pokemon.pkmn_name }}</h3>
+        <img class= mx-auto src="{{ pokemon.shiny_sprite_url }}" alt="shiny_sprite"">
+        <h5>{{ pokemon.ability }}</h5>
 
         <table class="table">
           <thead>
@@ -45,18 +45,18 @@ Pokemon Team Builder
           </thead>
           <tbody>         
             <tr>
-              <td>{{ pkmn_name['base_hp'] }}</td>
-              <td>{{ pkmn_name['attack'] }}</td>
-              <td>{{ pkmn_name['defense'] }}</td>
-              <td>{{ pkmn_name['sp_attk'] }}</td>
-              <td>{{ pkmn_name['sp_def'] }}</td>
-              <td>{{ pkmn_name['speed'] }}</td>
-              <td><a href="/catch"><button class="w3-button login-btn w3-green">Catch!</button></a></td>
-              <td><button class="w3-button login-btn w3-red">Release!</button></td>
+              <td>{{ pokemon.base_hp }}</td>
+              <td>{{ pokemon.attack }}</td>
+              <td>{{ pokemon.defense }}</td>
+              <td>{{ pokemon.sp_atk }}</td>
+              <td>{{ pokemon.sp_def }}</td>
+              <td>{{ pokemon.speed }}</td>
+              <td><a href="{{ url_for(pokemon.catch) }}" class="w3-button login-btn w3-green">Catch!</a></td>
+              <td><a href="{{ url_for(pokemon.release), pokemon_name=pokemon.pkmn_name }}" class="w3-button login-btn w3-red">Release!</a></td>
             </tr>           
           </tbody>
         </table>
       </div>
     </div>
-    {% endif %}
+    {% endfor %}
 {% endblock %}
