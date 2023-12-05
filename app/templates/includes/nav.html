@@ -15,10 +15,13 @@
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('pokemon.get_pkmn_data_name') }}" alt="search_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team Builder</a>
+          <a class="nav-link" href="{{ url_for('pokemon.get_pkmn_data_name') }}" alt="search_btn"><img src="https://cdn.dribbble.com/users/6245075/screenshots/16308217/media/43d605032a07ef017cd37bda43064c5c.png?resize=400x0">Team Builder</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('main.catch') }}" alt="search_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team</a>
+          <a class="nav-link" href="{{ url_for('main.catch') }}" alt="team_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('main.trainers') }}" alt="trainer_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Find a Trainer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('auth.logout') }}" alt="logout_btn"><img src="https://i.pinimg.com/474x/b8/4a/f3/b84af360376913cda85fa9b8b214f9f1.jpg">Logout</a>

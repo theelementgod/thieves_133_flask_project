@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/pkmn_name.css">
+{% endblock %}
+
+{%block title %}
+Trainers Page
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+    {% if all_trainers %}
+        {% for trainer in all_trainers %}
+              <div class="card bg-primary mx-auto mb-3 mt-3">
+                <div class="card bg-danger">
+                <div class="card-body text-center">
+                <p class="card-text">{{ trainer.first_name }}</p>
+                <img src="{{ pokemon.shiny_sprite_url }}" alt="sprites">
+                </div>
+                </div>
+              </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

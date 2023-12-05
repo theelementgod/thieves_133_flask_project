@@ -51,12 +51,13 @@ def catch(pkmn_name):
         
         trainer_team = current_user.catch.all()
 
-        if len(trainer_team) >= 5:
+        if len(trainer_team) >= 6:
             flash(f'You can have a max of 6 Pokemon on your Team.', 'danger')
             return redirect(url_for('pokemon.get_pkmn_data_name'))
         
         if poke in trainer_team:
             flash(f'{pkmn_name} is already on your Team.', 'warning')
+            return redirect(url_for('pokemon.get_pkmn_data_name'))
 
         current_user.catch.append(poke)
         db.session.commit()
@@ -74,4 +75,5 @@ def release(pkmn_name):
     pkmn = Pokemon.query.get(pkmn_name)
     db.session.delete(pkmn)
     db.session.commit()
+    flash(f'You have released { pkmn_name } from your team!', 'success')
     return redirect(url_for('pokemon.get_pkmn_data_name'))

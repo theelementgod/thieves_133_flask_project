@@ -1,6 +1,6 @@
 from . import main
 from flask import render_template, request, flash, url_for, redirect
-from app.models import Pokemon, db
+from app.models import Pokemon, db, User, trainer_catch
 from .forms import CatchForm
 from flask_login import current_user, login_required
 
@@ -39,5 +39,13 @@ def team():
 @main.route('/create_team')
 @login_required
 def catch():
-    all_teams = Pokemon.query.all()
+    trainer = User.query.get(current_user.id)
+    all_teams = trainer.catch
     return render_template('create_teams.html', all_teams=all_teams)
+
+@main.route('/trainers')
+@login_required
+def show_trainers():
+    all_trainers = User.query.all()
+    trainer_team = trainer_catch.query.get(current_user.id)
+    return render_template('trainers.html', all_trainers=all_trainers, trainer_team=trainer_team)

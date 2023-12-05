@@ -11,8 +11,40 @@ Team Page
 {% block content %}
 {% include './includes/nav.html' %}
     {% if all_teams %}
-        {% for pokemon in all_teams %}
-            {{ pokemon }}
+        {% for poke in all_teams %}
+        <div class="w3-card-4 m-3 w3-dark-grey">
+
+            <div class="w3-container w3-center">
+              <h3>{{ poke.pkmn_name }}</h3>
+              <img class= mx-auto src="{{ poke.shiny_sprite_url }}" alt="shiny_sprite"">
+              <h5>{{ poke.ability }}</h5>
+      
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Base HP</th>
+                    <th scope="col">Attack</th>
+                    <th scope="col">Defense</th>
+                    <th scope="col">Special Attack</th>
+                    <th scope="col">Special Defense</th>
+                    <th scope="col">Speed</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>         
+                  <tr>
+                    <td>{{ poke.base_hp }}</td>
+                    <td>{{ poke.attack }}</td>
+                    <td>{{ poke.defense }}</td>
+                    <td>{{ poke.sp_atk }}</td>
+                    <td>{{ poke.sp_def }}</td>
+                    <td>{{ poke.speed }}</td>
+                    <td><a href="{{ url_for('pokemon.release', pkmn_name=poke.pkmn_name) }}" class="w3-button login-btn w3-red">Release!</a></td>
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+          </div>
         {% endfor %}
     {% endif %}
 {% endblock %}
