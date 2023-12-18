@@ -12,14 +12,23 @@ Trainers Page
 {% include './includes/nav.html' %}
     {% if all_trainers %}
         {% for trainer in all_trainers %}
-              <div class="card bg-primary mx-auto mb-3 mt-3">
-                <div class="card bg-danger">
-                <div class="card-body text-center">
-                <p class="card-text">{{ trainer.first_name }}</p>
-                <img src="{{ pokemon.shiny_sprite_url }}" alt="sprites">
-                </div>
-                </div>
-              </div>
+          {% if trainer != current_user.id %}
+          <div class="card bg-primary mx-auto mb-3 mt-3">
+            <div class="card bg-danger">
+            <div class="card-body text-center">
+            <p class="card-text">{{ trainer.first_name }}</p>
+            {% for pokemon in trainer.catch %}
+            <img src="{{ pokemon.shiny_sprite_url }}" alt="sprites">
+            {% endfor %}
+            <div>
+              <a href="{{ url_for('main.battle') }}" class="w-25 mx-auto w3-button login-btn w3-green">Battle!</a>
+            </div>
+            </div>
+            </div>
+          </div>
+            {% else %}
+            pass
+          {% endif %}
         {% endfor %}
     {% endif %}
 {% endblock %}

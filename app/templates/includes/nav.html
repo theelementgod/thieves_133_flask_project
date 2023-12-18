@@ -15,13 +15,13 @@
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('pokemon.get_pkmn_data_name') }}" alt="search_btn"><img src="https://cdn.dribbble.com/users/6245075/screenshots/16308217/media/43d605032a07ef017cd37bda43064c5c.png?resize=400x0">Team Builder</a>
+          <a class="nav-link" href="{{ url_for('pokemon.get_pkmn_data_name') }}" alt="search_btn"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e8ddc4da-23dd-4502-b65b-378c9cfe5efa/dffpzbv-0e7a7942-ab70-4049-b80c-852c2748a4cb.png/v1/fit/w_375,h_375/greatball_by_jormxdos_dffpzbv-375w.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2U4ZGRjNGRhLTIzZGQtNDUwMi1iNjViLTM3OGM5Y2ZlNWVmYVwvZGZmcHpidi0wZTdhNzk0Mi1hYjcwLTQwNDktYjgwYy04NTJjMjc0OGE0Y2IucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.PqbMwf42TO6g_RKpS-ti0fzhuSAiq00IoABGlLW8rVU">Team Builder</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('main.catch') }}" alt="team_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Team</a>
+          <a class="nav-link" href="{{ url_for('main.catch') }}" alt="team_btn"><img src="https://ae01.alicdn.com/kf/Sd76c684f31bb401a8624a1b3acc6dc7cC.jpg_640x640q90.jpg">Team</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('main.trainers') }}" alt="trainer_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Find a Trainer</a>
+          <a class="nav-link" href="{{ url_for('main.show_trainers') }}" alt="trainer_btn"><img src="https://i.ebayimg.com/images/g/1zkAAOSw3ABhnP89/s-l1200.webp">Find a Trainer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('auth.logout') }}" alt="logout_btn"><img src="https://i.pinimg.com/474x/b8/4a/f3/b84af360376913cda85fa9b8b214f9f1.jpg">Logout</a>

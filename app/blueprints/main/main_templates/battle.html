@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/pkmn_name.css">
+{% endblock %}
+
+{%block title %}
+Trainers Page
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+    {% if all_trainers %}
+        {% for trainer in all_trainers %}
+        <div>
+            <div class="card bg-primary mx-auto mb-3 mt-3">
+                <div class="card bg-danger">
+                <div class="card-body text-center">
+                <p class="card-text">{{ trainer.first_name }}</p>
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

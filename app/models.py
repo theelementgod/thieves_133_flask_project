@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.utcnow())
     catch = db.relationship('Pokemon', secondary=trainer_catch, backref='catch', lazy='dynamic')
+    party = db.relationship('Pokemon', secondary=trainer_catch, backref='party', lazy='dynamic')
 
     def __init__(self, first_name, last_name, email, password):
         self.first_name = first_name
@@ -46,3 +47,18 @@ class Pokemon(db.Model):
         self.sp_atk = sp_atk
         self.sp_def = sp_def
         self.speed = speed
+
+class Battle(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    trainer1_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    trainer2_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    turn = db.Column(db.Integer, default=1)
+    trainer1 = db.relationship('User', foreign_keys=[trainer1_id])
+    trainer2 = db.relationship('User', foreign_keys=[trainer2_id])
+
+    def __init__(self, trainer1_id, trainer2_id, turn, trainer1, trainer2):
+        self.trainer1_id = trainer1_id
+        self.trainer2_id = trainer2_id
+        self.turn = turn
+        self.trainer1 = trainer1
+        self.trainer2 = trainer2
